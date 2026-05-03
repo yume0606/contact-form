@@ -26,8 +26,7 @@ return new class extends Migration {
             $table->string('building', 255)
                 ->nullable();
             $table->text('detail');
-            $table->timestamp('created_at')->useCurrent()->nullable();
-            $table->timestamp('updated_at')->useCurrent()->nullable();
+            $table->timestamps();
         });
     }
 

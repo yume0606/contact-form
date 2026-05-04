@@ -242,7 +242,7 @@
             </div>
         @endif
 
-        <form action="{{ route('/confirm') }}" method="POST">
+        <form action="{{ route('contact.confirm') }}" method="POST">
             @csrf
 
             {{-- お名前 --}}

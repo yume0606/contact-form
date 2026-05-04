@@ -128,7 +128,7 @@
         </tr>
         <tr>
             <th>お問い合わせの種類</th>
-            <td>{{ $data['inquiry_type'] }}</td>
+            <td>{{ $categories->find($contact['category_id'])->content }}</td>
         </tr>
         <tr>
             <th>お問い合わせ内容</th>

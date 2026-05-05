@@ -24,6 +24,6 @@ class Contact extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Contact::class);
+        return $this->belongsTo(Category::class);
     }
 }

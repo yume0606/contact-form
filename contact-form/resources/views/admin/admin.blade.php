@@ -14,8 +14,8 @@
         }
 
         /* ══════════════════════════════
-               Search bar
-            ══════════════════════════════ */
+                           Search bar
+                        ══════════════════════════════ */
         .search-bar {
             display: flex;
             align-items: center;
@@ -148,8 +148,8 @@
         }
 
         /* ══════════════════════════════
-               Toolbar (export + pagination)
-            ══════════════════════════════ */
+                           Toolbar (export + pagination)
+                        ══════════════════════════════ */
         .toolbar {
             display: flex;
             align-items: center;
@@ -212,8 +212,8 @@
         }
 
         /* ══════════════════════════════
-               Table
-            ══════════════════════════════ */
+                           Table
+                        ══════════════════════════════ */
         .contact-table {
             width: 100%;
             border-collapse: collapse;
@@ -269,8 +269,8 @@
         }
 
         /* ══════════════════════════════
-               Modal overlay
-            ══════════════════════════════ */
+                           Modal overlay
+                        ══════════════════════════════ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -392,7 +392,7 @@
     <h2 class="page-title">Admin</h2>
 
     {{-- ── Search bar ── --}}
-    <form method="GET" action="{{ route('admin.index') }}">
+    <form method="GET" action="{{ route('admin.admin') }}">
         <div class="search-bar">
             <input type="text" name="keyword" class="search-text" placeholder="名前やメールアドレスを入力してください"
                 value="{{ request('keyword') }}">
@@ -424,21 +424,21 @@
             </div>
 
             <button type="submit" class="btn-search">検索</button>
-            <a href="{{ route('admin.index') }}" class="btn-reset">リセット</a>
+            <a href="{{ route('admin.admin') }}" class="btn-reset">リセット</a>
         </div>
     </form>
 
     {{-- ── Toolbar ── --}}
-    <div class="toolbar">
+    {{-- <div class="toolbar">
         <a href="{{ route('admin.export') }}" class="btn-export">エクスポート</a>
 
         <div class="pagination">
             {{-- Previous --}}
-            @if ($contacts->onFirstPage())
-                <span class="page-btn disabled">‹</span>
+            {{--@if ($contacts->onFirstPage())
+            <span class="page-btn disabled">‹</span>
             @else
-                <a href="{{ $contacts->previousPageUrl() }}" class="page-btn">‹</a>
-            @endif
+            <a href="{{ $contacts->previousPageUrl() }}" class="page-btn">‹</a>
+            @endif --}}
 
             {{-- Page numbers --}}
             @for ($i = 1; $i <= $contacts->lastPage(); $i++)

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,15 @@ Route::get('/', [CategoryController::class, 'index'])->name('form');
 Route::post('/confirm', [CategoryController::class, 'confirm'])->name('contact.confirm');
 Route::post('/thanks', [CategoryController::class, 'send'])->name('contact.send');
 Route::post('/back', [CategoryController::class, 'back'])->name('contact.back');
+
+//管理者画面
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.admin');
+    Route::delete('/admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+});
+//Route::post('/admin');
+
+
+
+//Fortify登録・ログイン画面
+//Route::get('/register')

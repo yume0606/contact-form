@@ -108,7 +108,7 @@
         </tr>
         <tr>
             <th>性別</th>
-            <td>{{ $data['gender'] }}</td>
+            <td>{{ $data['gender_label'] }}</td>
         </tr>
         <tr>
             <th>メールアドレス</th>
@@ -116,7 +116,7 @@
         </tr>
         <tr>
             <th>電話番号</th>
-            <td>{{ $data['phone1'] }}{{ $data['phone2'] }}{{ $data['phone3'] }}</td>
+            <td>{{ $data['tel_1'] }}{{ $data['tel_2'] }}{{ $data['tel_3'] }}</td>
         </tr>
         <tr>
             <th>住所</th>
@@ -128,20 +128,28 @@
         </tr>
         <tr>
             <th>お問い合わせの種類</th>
-            <td>{{ $categories->find($contact['category_id'])->content }}</td>
+            <td>{{ $data['inquiry_type'] }}</td>
         </tr>
         <tr>
             <th>お問い合わせ内容</th>
-            <td>{!! nl2br(e($data['message'])) !!}</td>
+            <td>{!! nl2br(e($data['detail'])) !!}</td>
         </tr>
     </table>
 
     <div class="confirm-actions">
         <form action="{{ route('contact.send') }}" method="POST" style="display:inline;">
             @csrf
-            @foreach ($data as $key => $value)
-                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-            @endforeach
+            <input type="hidden" name="last_name" value="{{ $data['last_name'] }}">
+            <input type="hidden" name="first_name" value="{{ $data['first_name'] }}">
+            <input type="hidden" name="gender" value="{{ $data['gender'] }}">
+            <input type="hidden" name="email" value="{{ $data['email'] }}">
+            <input type="hidden" name="tel_1" value="{{ $data['tel_1'] }}">
+            <input type="hidden" name="tel_2" value="{{ $data['tel_2'] }}">
+            <input type="hidden" name="tel_3" value="{{ $data['tel_3'] }}">
+            <input type="hidden" name="address" value="{{ $data['address'] }}">
+            <input type="hidden" name="building" value="{{ $data['building'] }}">
+            <input type="hidden" name="category_id" value="{{ $data['category_id'] }}">
+            <input type="hidden" name="detail" value="{{ $data['detail'] }}">
             <button type="submit" class="btn-submit">送信</button>
         </form>
 

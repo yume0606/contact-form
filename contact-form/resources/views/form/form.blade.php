@@ -235,13 +235,12 @@
 
     <div class="contact-form">
         @if ($errors->any())
-            <div style="margin-bottom:24px; color: var(--color-required); font-size:13px;">
+            <ul>
                 @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
+                    <li>{{ $error }}</li>
                 @endforeach
-            </div>
+            </ul>
         @endif
-
         <form action="{{ route('contact.confirm') }}" method="POST">
             @csrf
 
@@ -250,9 +249,15 @@
                 <label class="form-label">お名前 <span class="required-mark">※</span></label>
                 <div class="name-fields">
                     <input type="text" name="last_name" class="form-input" placeholder="例: 山田"
-                        value="{{ old('first_name') }}">
-                    <input type="text" name="first_name" class="form-input" placeholder="例: 太郎"
                         value="{{ old('last_name') }}">
+                    @error('last_name')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
+                    <input type="text" name="first_name" class="form-input" placeholder="例: 太郎"
+                        value="{{ old('first_name') }}">
+                    @error('first_name')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
@@ -262,16 +267,13 @@
                 <div class="form-control-wrap">
                     <div class="radio-group">
                         <label class="radio-label">
-                            <input type="radio" name="gender" value="男性" {{ old('gender', '男性') === '男性' ? 'checked' : '' }}>
-                            男性
+                            <input type="radio" name="gender" value="1" {{ old('gender', '1') === '1' ? 'checked' : '' }}> 男性
                         </label>
                         <label class="radio-label">
-                            <input type="radio" name="gender" value="女性" {{ old('gender') === '女性' ? 'checked' : '' }}>
-                            女性
+                            <input type="radio" name="gender" value="2" {{ old('gender') === '2' ? 'checked' : '' }}> 女性
                         </label>
                         <label class="radio-label">
-                            <input type="radio" name="gender" value="その他" {{ old('gender') === 'その他' ? 'checked' : '' }}>
-                            その他
+                            <input type="radio" name="gender" value="3" {{ old('gender') === '3' ? 'checked' : '' }}> その他
                         </label>
                     </div>
                     @error('gender')
@@ -297,18 +299,24 @@
                 <label class="form-label">電話番号 <span class="required-mark">※</span></label>
                 <div class="form-control-wrap">
                     <div class="phone-fields">
-                        <input type="text" name="phone1" class="form-input" placeholder="080" maxlength="4"
-                            style="width:100px;" value="{{ old('phone1') }}">
+                        <input type="text" name="tel_1" class="form-input" placeholder="080" maxlength="4"
+                            style="width:100px;" value="{{ old('tel_1') }}">
+                        @error('tel_1')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                         <span class="phone-sep">-</span>
-                        <input type="text" name="phone2" class="form-input" placeholder="1234" maxlength="4"
-                            style="width:120px;" value="{{ old('phone2') }}">
+                        <input type="text" name="tel_2" class="form-input" placeholder="1234" maxlength="4"
+                            style="width:120px;" value="{{ old('tel_2') }}">
+                        @error('tel_2')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                         <span class="phone-sep">-</span>
-                        <input type="text" name="phone3" class="form-input" placeholder="5678" maxlength="4"
-                            style="width:120px;" value="{{ old('phone3') }}">
+                        <input type="text" name="tel_3" class="form-input" placeholder="5678" maxlength="4"
+                            style="width:120px;" value="{{ old('tel_3') }}">
+                        @error('tel_3')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
                     </div>
-                    @error('phone1')
-                        <p class="error-message">{{ $message }}</p>
-                    @enderror
                 </div>
             </div>
 
@@ -338,15 +346,15 @@
                 <label class="form-label">お問い合わせの種類 <span class="required-mark">※</span></label>
                 <div class="form-control-wrap">
                     <div class="form-select-wrap">
-                        <select name="detail" class="form-select">
-                            <option value="" disabled {{ old('detail') ? '' : 'selected' }}>選択してください</option>
+                        <select name="category_id" class="form-select">
+                            <option value="" disabled {{ old('category_id') ? '' : 'selected' }}>選択してください</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->content }}</option>
                             @endforeach
                         </select>
                         <span class="select-arrow">▼</span>
                     </div>
-                    @error('detail')
+                    @error('category_id')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
                 </div>
@@ -356,9 +364,9 @@
             <div class="form-row">
                 <label class="form-label">お問い合わせ内容 <span class="required-mark">※</span></label>
                 <div class="form-control-wrap">
-                    <textarea name="message" class="form-textarea"
-                        placeholder="お問い合わせ内容をご記載ください">{{ old('message') }}</textarea>
-                    @error('message')
+                    <textarea name="detail" class="form-textarea"
+                        placeholder="お問い合わせ内容をご記載ください">{{ old('detail') }}</textarea>
+                    @error('detail')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
                 </div>

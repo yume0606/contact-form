@@ -76,7 +76,7 @@
 
         <div class="thanks-content">
             <p class="thanks-message">お問い合わせありがとうございました</p>
-            <a href="{{ route('home') }}" class="btn-home">HOME</a>
+            <a href="{{ route('form') }}" class="btn-home">HOME</a>
         </div>
     </div>
 @endsection

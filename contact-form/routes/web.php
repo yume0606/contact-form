@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 //お問い合わせフォーム画面
 Route::get('/', [CategoryController::class, 'index'])->name('form');
 Route::post('/confirm', [CategoryController::class, 'confirm'])->name('contact.confirm');
+Route::post('/send', [CategoryController::class, 'send'])->name('contact.send');
+Route::post('/back', [CategoryController::class, 'back'])->name('contact.back');

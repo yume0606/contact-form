@@ -15,6 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+
         $contacts = Contact::with('category')
             ->paginate(7);
 

@@ -14,8 +14,8 @@
         }
 
         /* ══════════════════════════════
-                           Search bar
-                        ══════════════════════════════ */
+                                                               Search bar
+                                                            ══════════════════════════════ */
         .search-bar {
             display: flex;
             align-items: center;
@@ -148,8 +148,8 @@
         }
 
         /* ══════════════════════════════
-                           Toolbar (export + pagination)
-                        ══════════════════════════════ */
+                                                               Toolbar (export + pagination)
+                                                            ══════════════════════════════ */
         .toolbar {
             display: flex;
             align-items: center;
@@ -212,8 +212,8 @@
         }
 
         /* ══════════════════════════════
-                           Table
-                        ══════════════════════════════ */
+                                                               Table
+                                                            ══════════════════════════════ */
         .contact-table {
             width: 100%;
             border-collapse: collapse;
@@ -269,8 +269,8 @@
         }
 
         /* ══════════════════════════════
-                           Modal overlay
-                        ══════════════════════════════ */
+                                                               Modal overlay
+                                                            ══════════════════════════════ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -412,7 +412,7 @@
                     <option value="">お問い合わせの種類</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}" {{ request('inquiry_type') == $category->id ? 'selected' : '' }}>
-                            {{ $category->name }}
+                            {{ $category->content }}
                         </option>
                     @endforeach
                 </select>
@@ -470,9 +470,9 @@
             @forelse ($contacts as $contact)
                 <tr>
                     <td>{{ $contact->last_name }}　{{ $contact->first_name }}</td>
-                    <td>{{ $contact->gender }}</td>
+                    <td>{{ $contact->gender_label }}</td>
                     <td>{{ $contact->email }}</td>
-                    <td>{{ $contact->category->name ?? '—' }}</td>
+                    <td>{{ $contact->category->content ?? '—' }}</td>
                     <td>
                         <button class="btn-detail" onclick="openModal({{ $contact->id }})">詳細</button>
                     </td>
@@ -501,7 +501,7 @@
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">性別</span>
-                    <span class="detail-value">{{ $contact->gender }}</span>
+                    <span class="detail-value">{{ $contact->gender_label }}</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">メールアドレス</span>
@@ -521,7 +521,7 @@
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">お問い合わせの種類</span>
-                    <span class="detail-value">{{ $contact->category->name ?? '—' }}</span>
+                    <span class="detail-value">{{ $contact->category->content ?? '—' }}</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">お問い合わせ内容</span>

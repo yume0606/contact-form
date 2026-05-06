@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.admin');
     Route::delete('/admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
-//Route::post('/admin');
 
 
 
 //Fortify登録・ログイン画面
-//Route::get('/register')
+//Route::post('/confirm', [RegisterController::class, 'confirm'])->name('register.register');

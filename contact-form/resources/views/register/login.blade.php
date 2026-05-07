@@ -82,14 +82,6 @@
         <p style="color: var(--color-primary); font-size:13px; margin-bottom:20px;">{{ session('status') }}</p>
     @endif
 
-    @if ($errors->any())
-        <div style="margin-bottom:20px;">
-            @foreach ($errors->all() as $error)
-                <p class="error-message">{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
-
     <form action="{{ route('login') }}" method="POST" novalidate>
         @csrf
 

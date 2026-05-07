@@ -77,13 +77,6 @@
 @endpush
 
 @section('content')
-    @if ($errors->any())
-        <div style="margin-bottom:20px;">
-            @foreach ($errors->all() as $error)
-                <p class="error-message">{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
 
     <form action="{{ route('register') }}" method="POST">
         @csrf

@@ -14,8 +14,8 @@
         }
 
         /* ══════════════════════════════
-                                                               Search bar
-                                                            ══════════════════════════════ */
+                                                                   Search bar
+                                                                ══════════════════════════════ */
         .search-bar {
             display: flex;
             align-items: center;
@@ -148,8 +148,8 @@
         }
 
         /* ══════════════════════════════
-                                                               Toolbar (export + pagination)
-                                                            ══════════════════════════════ */
+                                                                   Toolbar (export + pagination)
+                                                                ══════════════════════════════ */
         .toolbar {
             display: flex;
             align-items: center;
@@ -212,8 +212,8 @@
         }
 
         /* ══════════════════════════════
-                                                               Table
-                                                            ══════════════════════════════ */
+                                                                   Table
+                                                                ══════════════════════════════ */
         .contact-table {
             width: 100%;
             border-collapse: collapse;
@@ -269,8 +269,8 @@
         }
 
         /* ══════════════════════════════
-                                                               Modal overlay
-                                                            ══════════════════════════════ */
+                                                                   Modal overlay
+                                                                ══════════════════════════════ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -400,9 +400,9 @@
             <div class="select-wrap">
                 <select name="gender" class="search-select">
                     <option value="">性別</option>
-                    <option value="男性" {{ request('gender') === '男性' ? 'selected' : '' }}>男性</option>
-                    <option value="女性" {{ request('gender') === '女性' ? 'selected' : '' }}>女性</option>
-                    <option value="その他" {{ request('gender') === 'その他' ? 'selected' : '' }}>その他</option>
+                    <option value="1" {{ request('gender') === '男性' ? 'selected' : '' }}>男性</option>
+                    <option value="2" {{ request('gender') === '女性' ? 'selected' : '' }}>女性</option>
+                    <option value="3" {{ request('gender') === 'その他' ? 'selected' : '' }}>その他</option>
                 </select>
                 <span class="select-arrow">▼</span>
             </div>

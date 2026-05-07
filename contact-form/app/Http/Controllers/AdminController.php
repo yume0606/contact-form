@@ -6,67 +6,44 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Category;
 
-use PhpParser\Node\Expr\AssignOp\Concat;
-
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Contact::with('category');
 
-        $contacts = Contact::with('category')
-            ->paginate(7);
+        // キーワード検索
+        if ($request->filled('keyword')) {
+            $keyword = $request->keyword;
+            $query->where(function ($q) use ($keyword) {
+                $q->where('last_name', 'like', "%{$keyword}%")
+                    ->orWhere('first_name', 'like', "%{$keyword}%")
+                    ->orWhere('email', 'like', "%{$keyword}%");
+            });
+        }
 
+        // 性別フィルター
+        if ($request->filled('gender')) {
+            $query->where('gender', $request->gender);
+        }
+
+        // お問い合わせの種類フィルター
+        if ($request->filled('inquiry_type')) {
+            $query->where('category_id', $request->inquiry_type);
+        }
+
+        // 日付フィルター
+        if ($request->filled('date')) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        //  $queryを使ってページネーション
+        $contacts = $query->paginate(7)->appends($request->query());
         $categories = Category::all();
 
         return view('admin.admin', compact('contacts', 'categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         Contact::find($id)->delete();

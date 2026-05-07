@@ -27,8 +27,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.admin');
     Route::delete('/admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
-
-
-
-//Fortify登録・ログイン画面
-//Route::post('/confirm', [RegisterController::class, 'confirm'])->name('register.register');

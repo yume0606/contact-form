@@ -35,3 +35,8 @@
 - お問い合わせフォーム入力ページ:http://localhost/
 - ログイン画面:http://localhost/login
 - ユーザー登録画面:http://localhost/register
+
+## テストアカウント
+
+- メールアドレス: test@test
+- パスワード: coachtech1106

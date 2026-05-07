@@ -13,6 +13,10 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Fortify;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -51,6 +55,27 @@ class FortifyServiceProvider extends ServiceProvider
         //登録画面
         Fortify::registerView(function () {
             return view('register.register');
+        });
+        //エラー表示
+        Fortify::authenticateUsing(function (Request $request) {
+            $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ], [
+                'email.required' => 'メールアドレスを入力してください。',
+                'email.email' => 'メールアドレスはメール形式で入力してください。',
+                'password.required' => 'パスワードを入力してください。',
+            ]);
+
+            $user = User::where('email', $request->email)->first();
+
+            if ($user && Hash::check($request->password, $user->password)) {
+                return $user;
+            }
+
+            throw ValidationException::withMessages([
+                'password' => ['ログイン情報が登録されていません'],
+            ]);
         });
     }
 }
